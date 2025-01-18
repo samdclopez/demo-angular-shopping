@@ -1,0 +1,37 @@
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">Pedidos Procesados</h1>
+      <button 
+        (click)="goBack()" 
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200"
+      >
+        Volver
+      </button>
+    </div>
+  
+    <div *ngIf="orders.length === 0" class="text-center py-8">
+      <p class="text-gray-600">No hay pedidos procesados</p>
+    </div>
+  
+    <div *ngIf="orders.length > 0" class="space-y-4">
+      <div *ngFor="let order of orders" class="border rounded-lg p-4 shadow-sm">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <p class="text-sm text-gray-600">Orden ID: {{order.id}}</p>
+            <p class="text-sm text-gray-600">Fecha: {{formatDate(order.date)}}</p>
+          </div>
+          <p class="text-lg font-semibold">Total: ${{order.total.toFixed(2)}}</p>
+        </div>
+        
+        <div class="mt-4">
+          <h3 class="font-semibold mb-2">Productos:</h3>
+          <div class="space-y-2">
+            <div *ngFor="let item of order.items" class="flex justify-between items-center text-sm">
+              <span>{{item.title}} (x{{item.quantity}})</span>
+              <span>${{(item.price * item.quantity).toFixed(2)}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
