@@ -9,6 +9,6 @@ export const routes: Routes = [
         component: MainLayoutComponent,
        
       },
-      { path: 'orders', component: OrdersComponent }
-    
+      { path: 'orders', component: OrdersComponent },
+      { path: '**', redirectTo: '' }
 ];
